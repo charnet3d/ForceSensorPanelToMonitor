@@ -132,12 +132,16 @@ namespace ForceSensorPanelToMonitor
                 throw new InvalidTopologyException("The current topology is unknown");
             }
 
-            var currentTopology = (WinApi.DisplayConfigTopology)currentTopologyId;
+            // This uncaught InvalidTopologyException shouldn't crash the app
+            // and display a non-removable exception dialog (unless you quit)
+            // If really needed it should be a one time warning message
 
-            if (currentTopology != WinApi.DisplayConfigTopology.DISPLAYCONFIG_TOPOLOGY_EXTEND)
-            {
-                throw new InvalidTopologyException("The current topology is {currentTopology}, but this only works if the topology is DISPLAYCONFIG_TOPOLOGY_EXTEND.");
-            }
+            //var currentTopology = (WinApi.DisplayConfigTopology)currentTopologyId;
+
+            //if (currentTopology != WinApi.DisplayConfigTopology.DISPLAYCONFIG_TOPOLOGY_EXTEND)
+            //{
+            //    throw new InvalidTopologyException("The current topology is {currentTopology}, but this only works if the topology is DISPLAYCONFIG_TOPOLOGY_EXTEND.");
+            //}
 
             var screens = Screen.AllScreens;
 
